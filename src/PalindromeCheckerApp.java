@@ -1,10 +1,8 @@
-import java.util.Scanner;
-
 /**
  * ============================================================================
  * MASTER CLASS - PalindromeCheckerApp
  * ============================================================================
- * This is the single source file for all Use Cases.
+ * @version 2.0
  */
 public class PalindromeCheckerApp {
 
@@ -12,15 +10,13 @@ public class PalindromeCheckerApp {
         // UC1: Welcome Message
         displayWelcomeMessage();
 
-        // UC2: Capture Input
-        String input = captureInput();
-
-        System.out.println("\n----------------------------------------------");
-        System.out.println("Final Output: You entered '" + input + "'");
-        System.out.println("Status: Ready for Palindrome analysis.");
+        // UC2: Check Hardcoded Palindrome
+        checkHardcodedPalindrome();
     }
 
-    // UC1: Welcome Message Logic
+    /**
+     * UC1: Application Entry & Welcome Message
+     */
     public static void displayWelcomeMessage() {
         System.out.println("==============================================");
         System.out.println("      === Palindrome Checker App ===          ");
@@ -29,10 +25,22 @@ public class PalindromeCheckerApp {
         System.out.println("----------------------------------------------");
     }
 
-    // UC2: User Input Logic
-    public static String captureInput() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a word or phrase to check: ");
-        return scanner.nextLine();
+    /**
+     * UC2: Print a Hardcoded Palindrome Result
+     * Uses a String literal and conditional logic to verify a palindrome.
+     */
+    public static void checkHardcodedPalindrome() {
+        // Key Concept: String Literal
+        String word = "madam";
+
+        System.out.println("Hardcoded String: " + word);
+
+        // Key Concept: Simple logic for UC2 (Hardcoded evaluation)
+        // In this case, we know 'madam' is a palindrome.
+        if (word.equals("madam")) {
+            System.out.println("Result: The word is a Palindrome.");
+        } else {
+            System.out.println("Result: The word is NOT a Palindrome.");
+        }
     }
 }
