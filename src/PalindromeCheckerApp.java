@@ -1,39 +1,46 @@
+import java.util.Stack;
+
 /**
  * ============================================================================
  * MASTER CLASS - PalindromeCheckerApp
  * ============================================================================
- * @version 4.0
+ * @version 5.0
  */
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
         displayWelcomeMessage();
 
-        // UC2: Hardcoded Check
+        // UC2
         checkHardcodedPalindrome();
 
-        // UC3: String Reverse
+        // UC3
         checkPalindromeWithReverse();
 
-        // UC4: Two-Pointer Character Array Check
+        // UC4
         checkPalindromeWithCharArray();
+
+        // UC5
+        checkPalindromeWithStack();
     }
 
     public static void displayWelcomeMessage() {
         System.out.println("==============================================");
         System.out.println("      === Palindrome Checker App ===          ");
         System.out.println("==============================================");
-        System.out.println("Version: 4.0");
+        System.out.println("Version: 5.0");
         System.out.println("----------------------------------------------");
     }
 
+    // --- UC2: Hardcoded Logic ---
     public static void checkHardcodedPalindrome() {
         String word = "madam";
         if (word.equals("madam")) {
-            System.out.println("UC2 Result: The word is a Palindrome.");
+            System.out.println("UC2 Result: 'madam' is a Palindrome.");
         }
     }
 
+    // --- UC3: String Reversal Logic ---
     public static void checkPalindromeWithReverse() {
         String original = "radar";
         String reversed = "";
@@ -43,37 +50,34 @@ public class PalindromeCheckerApp {
         System.out.println("UC3 Status: " + (original.equals(reversed) ? "Palindrome" : "Not Palindrome"));
     }
 
-    /**
-     * UC4: Character Array Based Palindrome Check
-     * Uses the two-pointer technique to compare characters efficiently.
-     */
+    // --- UC4: Two-Pointer Char Array Logic ---
     public static void checkPalindromeWithCharArray() {
         String input = "level";
-
-        // Key Concept: Character Array (char[])
         char[] charArray = input.toCharArray();
-
-        // Key Concept: Two-Pointer Technique
-        int left = 0;
-        int right = charArray.length - 1;
+        int left = 0, right = charArray.length - 1;
         boolean isPalindrome = true;
-
-        System.out.println("\nUC4 Input: " + input);
-
         while (left < right) {
-            // Key Concept: Array Indexing
             if (charArray[left] != charArray[right]) {
                 isPalindrome = false;
-                break; // Exit loop early if mismatch found
+                break;
             }
-            left++;  // Move forward
-            right--; // Move backward
+            left++;
+            right--;
         }
+        System.out.println("UC4 Status: " + (isPalindrome ? "Palindrome" : "Not Palindrome"));
+    }
 
-        if (isPalindrome) {
-            System.out.println("UC4 Result: '" + input + "' is a Palindrome (Efficiently Checked).");
-        } else {
-            System.out.println("UC4 Result: '" + input + "' is NOT a Palindrome.");
+    // --- UC5: Stack-Based Logic ---
+    public static void checkPalindromeWithStack() {
+        String input = "noon";
+        Stack<Character> stack = new Stack<>();
+        for (char c : input.toCharArray()) {
+            stack.push(c);
         }
+        String reversed = "";
+        while (!stack.isEmpty()) {
+            reversed += stack.pop();
+        }
+        System.out.println("UC5 Status: " + (input.equals(reversed) ? "Palindrome" : "Not Palindrome"));
     }
 }
