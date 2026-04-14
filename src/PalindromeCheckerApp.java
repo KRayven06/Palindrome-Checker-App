@@ -2,26 +2,28 @@
  * ============================================================================
  * MASTER CLASS - PalindromeCheckerApp
  * ============================================================================
- * @version 3.0
+ * @version 4.0
  */
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        // UC1: Welcome Message
         displayWelcomeMessage();
 
-        // UC2: Check Hardcoded Palindrome
+        // UC2: Hardcoded Check
         checkHardcodedPalindrome();
 
-        // UC3: Check Palindrome using String Reverse
+        // UC3: String Reverse
         checkPalindromeWithReverse();
+
+        // UC4: Two-Pointer Character Array Check
+        checkPalindromeWithCharArray();
     }
 
     public static void displayWelcomeMessage() {
         System.out.println("==============================================");
         System.out.println("      === Palindrome Checker App ===          ");
         System.out.println("==============================================");
-        System.out.println("Version: 3.0");
+        System.out.println("Version: 4.0");
         System.out.println("----------------------------------------------");
     }
 
@@ -32,31 +34,46 @@ public class PalindromeCheckerApp {
         }
     }
 
-    /**
-     * UC3: Palindrome Check Using String Reverse
-     * Demonstrates reversal logic using a for-loop and string concatenation.
-     */
     public static void checkPalindromeWithReverse() {
         String original = "radar";
         String reversed = "";
-
-        // Key Concept: for-loop (Reverse Iteration)
-        // Start from length - 1, end at index 0
         for (int i = original.length() - 1; i >= 0; i--) {
-            // Key Concept: String Concatenation (+)
-            // Note: This creates a new String object in every iteration
             reversed += original.charAt(i);
         }
+        System.out.println("UC3 Status: " + (original.equals(reversed) ? "Palindrome" : "Not Palindrome"));
+    }
 
-        System.out.println("\nUC3 Original String: " + original);
-        System.out.println("UC3 Reversed String: " + reversed);
+    /**
+     * UC4: Character Array Based Palindrome Check
+     * Uses the two-pointer technique to compare characters efficiently.
+     */
+    public static void checkPalindromeWithCharArray() {
+        String input = "level";
 
-        // Key Concept: equals() Method
-        // Always use .equals() for content, never == for Strings
-        if (original.equals(reversed)) {
-            System.out.println("Status: It is a Palindrome!");
+        // Key Concept: Character Array (char[])
+        char[] charArray = input.toCharArray();
+
+        // Key Concept: Two-Pointer Technique
+        int left = 0;
+        int right = charArray.length - 1;
+        boolean isPalindrome = true;
+
+        System.out.println("\nUC4 Input: " + input);
+
+        while (left < right) {
+            // Key Concept: Array Indexing
+            if (charArray[left] != charArray[right]) {
+                isPalindrome = false;
+                break; // Exit loop early if mismatch found
+            }
+            left++;  // Move forward
+            right--; // Move backward
+        }
+
+        if (isPalindrome) {
+            System.out.println("UC4 Result: '" + input + "' is a Palindrome (Efficiently Checked).");
         } else {
-            System.out.println("Status: It is NOT a Palindrome.");
+            System.out.println("UC4 Result: '" + input + "' is NOT a Palindrome.");
         }
     }
 }
